@@ -1,0 +1,4 @@
+name: BungeeHubCommand
+version: '${project.version}'
+main: io.funworld.bungeehubcommand.BungeeHubCommand
+author: XIAOYI12
