@@ -20,7 +20,7 @@ public class HubCommand extends Command {
         if(sender instanceof ProxiedPlayer){
             ProxiedPlayer player = (ProxiedPlayer) sender;
             if(!player.getServer().getInfo().getName().equalsIgnoreCase(instance.server_name)){
-                if(player.getServer().getInfo().getName().equalsIgnoreCase(instance.default_name)){
+                if(!player.getServer().getInfo().getName().equalsIgnoreCase(instance.default_name)){
                     player.sendMessage(new ComponentBuilder("You are already connected to the Hub!").color(ChatColor.RED).create());
                     return;
                 }
