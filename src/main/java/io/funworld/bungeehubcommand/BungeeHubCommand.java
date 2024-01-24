@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 
 public final class BungeeHubCommand extends Plugin {
-    String server_name;
+    String server_name,default_name;
     @Override
     public void onEnable() {
         try {
@@ -29,6 +29,7 @@ public final class BungeeHubCommand extends Plugin {
             }
             Configuration configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
             server_name = configuration.get("server","main");
+            default_name = configuration.get("default","login");
             getProxy().getPluginManager().registerCommand(this, new HubCommand(this));
         }catch (IOException e){
             getLogger().warning("Plugin config load error!");

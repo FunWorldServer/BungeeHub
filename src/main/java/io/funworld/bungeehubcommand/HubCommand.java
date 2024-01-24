@@ -11,7 +11,7 @@ import net.md_5.bungee.api.plugin.Command;
 public class HubCommand extends Command {
     BungeeHubCommand instance;
     public HubCommand(BungeeHubCommand instance) {
-        super("hub","permission.hub",new String[0]);
+        super("hub");
         this.instance = instance;
     }
 
@@ -20,6 +20,10 @@ public class HubCommand extends Command {
         if(sender instanceof ProxiedPlayer){
             ProxiedPlayer player = (ProxiedPlayer) sender;
             if(!player.getServer().getInfo().getName().equalsIgnoreCase(instance.server_name)){
+                if(player.getServer().getInfo().getName().equalsIgnoreCase(instance.default_name)){
+                    player.sendMessage(new ComponentBuilder("You are already connected to the Hub!").color(ChatColor.RED).create());
+                    return;
+                }
                 ServerInfo target = ProxyServer.getInstance().getServerInfo(instance.server_name);
                 player.connect(target);
             }else{
